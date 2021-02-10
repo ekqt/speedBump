@@ -1,0 +1,281 @@
+@font-face {
+    font-family: "Atkin";
+    src: url("fonts/Atkinson-Hyperlegible-Bold-102a.woff2") format("woff2");
+    font-weight: bold;
+  }
+
+@font-face {
+    font-family: "Atkin";
+    src: url("fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2") format("woff2");
+    font-weight: bold;
+    font-style: italic;
+  }
+
+@font-face {
+    font-family: "Atkin";
+    src: url("fonts/Atkinson-Hyperlegible-Regular-102a.woff2") format("woff2");
+    font-weight: regular;
+  }
+
+@font-face {
+    font-family: "Atkin";
+    src: url("fonts/Atkinson-Hyperlegible-Italic-102a.woff2") format("woff2");
+    font-weight: regular;
+    font-style: italic;
+  }
+
+body {
+    height: 100vh;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Atkin';
+    background-image: linear-gradient(339deg, rgba(47, 47, 47,0.02) 0%, rgba(47, 47, 47,0.02) 42%,transparent 42%, transparent 99%,rgba(17, 17, 17,0.02) 99%, rgba(17, 17, 17,0.02) 100%),linear-gradient(257deg, rgba(65, 65, 65,0.02) 0%, rgba(65, 65, 65,0.02) 11%,transparent 11%, transparent 92%,rgba(53, 53, 53,0.02) 92%, rgba(53, 53, 53,0.02) 100%),linear-gradient(191deg, rgba(5, 5, 5,0.02) 0%, rgba(5, 5, 5,0.02) 1%,transparent 1%, transparent 45%,rgba(19, 19, 19,0.02) 45%, rgba(19, 19, 19,0.02) 100%),linear-gradient(29deg, rgba(28, 28, 28,0.02) 0%, rgba(28, 28, 28,0.02) 33%,transparent 33%, transparent 40%,rgba(220, 220, 220,0.02) 40%, rgba(220, 220, 220,0.02) 100%),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
+    overflow: hidden;
+}
+
+:root{
+    /* --border-gl: 0.1rem solid black; */
+}
+
+.main {
+    border: var(--border-gl);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#instructions {
+    border: var(--border-gl);
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.2rem 0;
+    font-family: 'Source Sans Pro';
+}
+
+.actions {
+    width: 100%;
+    border: var(--border-gl);
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2rem;
+}
+
+
+.action, #or {
+    display:none;
+    margin: 0;
+    transition: color 0.2s transform 0.2s ease-in-out;
+    padding-top: 0.4rem;
+}
+
+#or {
+    margin: 0rem 0.5rem 0rem 0.4rem;
+}
+
+
+.action {
+    border-bottom: 0.1rem double #e31c23be;
+}
+
+.suits {
+    margin: 0 1rem 0.45rem;
+    height: 2rem;
+    font-style: normal;
+    border: none;
+}
+
+#start {
+    display: flex;
+}
+
+.hover:hover {
+    cursor: pointer;
+    color: #E31C24;
+    transform: scale(1.05);
+}
+
+.cards{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    border: var(--border-gl);
+    width: 150px;
+    height: calc(150px/0.72);
+    border-radius: 0.8rem;
+    margin: 8px 8px;
+    box-shadow: 0 0.5rem 1.5rem -0.2rem rgba(0, 0, 0, 0.20);
+}
+
+#card1 {
+    width: 250px;
+}
+
+#card2, #card3, #card4 {
+    display: none;
+}
+
+.doc {
+    background: center /101% url("./SVG/Deck\ of\ Cards.svg") no-repeat;
+    height: calc(250px/0.72);
+}
+
+.doc {
+    background: center /101% url("./SVG/Deck\ of\ Cards.svg") no-repeat;
+    height: calc(250px/0.72);
+}
+
+.bc {
+    background: center /101% url("./SVG/blankCard.svg") no-repeat;
+}
+
+.buttons {
+    border: var(--border-gl);
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 35%;
+    background: none;
+    color: #E31C24;
+    border: none;
+    margin: 0.3rem 0.6rem;
+    padding: 0.5rem 0rem;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    font-weight: normal;
+    letter-spacing: 2px;
+    border-radius: 0.3rem;
+    font-weight: bold;
+    transition: background-color 0.2s transform 0.2s ease-in-out;
+    border: var(--border-gl);
+  }
+
+@media (min-width: 720px) {
+    .button {
+        width: 15%;
+    }
+}
+  
+.button:hover{
+    background-color: #e31c231c;
+    cursor: pointer;
+    transform: scale(1.04);
+}
+
+.button:focus {
+    outline: none;
+    }
+
+
+.response {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.correct {
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+.wrong {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.responseEffect {
+    margin-top: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.responseMsg {
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 4rem;
+}
+
+.c1C {background: center /101% url("./SVG/1C.svg") no-repeat;}
+.c1D {background: center /101% url("./SVG/1D.svg") no-repeat;}
+.c1H {background: center /101% url("./SVG/1H.svg") no-repeat;}
+.c1S {background: center /101% url("./SVG/1S.svg") no-repeat;}
+
+.c2C {background: center /101% url("./SVG/2C.svg") no-repeat;}
+.c2D {background: center /101% url("./SVG/2D.svg") no-repeat;}
+.c2H {background: center /101% url("./SVG/2H.svg") no-repeat;}
+.c2S {background: center /101% url("./SVG/2S.svg") no-repeat;}
+
+.c3C {background: center /101% url("./SVG/3C.svg") no-repeat;}
+.c3D {background: center /101% url("./SVG/3D.svg") no-repeat;}
+.c3H {background: center /101% url("./SVG/3H.svg") no-repeat;}
+.c3S {background: center /101% url("./SVG/3S.svg") no-repeat;}
+
+.c4D {background: center /101% url("./SVG/4D.svg") no-repeat;}
+.c4C {background: center /101% url("./SVG/4C.svg") no-repeat;}
+.c4H {background: center /101% url("./SVG/4H.svg") no-repeat;}
+.c4S {background: center /101% url("./SVG/4S.svg") no-repeat;}
+
+.c5D {background: center /101% url("./SVG/5D.svg") no-repeat;}
+.c5C {background: center /101% url("./SVG/5C.svg") no-repeat;}
+.c5H {background: center /101% url("./SVG/5H.svg") no-repeat;}
+.c5S {background: center /101% url("./SVG/5S.svg") no-repeat;}
+
+.c6D {background: center /101% url("./SVG/6D.svg") no-repeat;}
+.c6C {background: center /101% url("./SVG/6C.svg") no-repeat;}
+.c6H {background: center /101% url("./SVG/6H.svg") no-repeat;}
+.c6S {background: center /101% url("./SVG/6S.svg") no-repeat;}
+
+.c7D {background: center /101% url("./SVG/7D.svg") no-repeat;}
+.c7C {background: center /101% url("./SVG/7C.svg") no-repeat;}
+.c7H {background: center /101% url("./SVG/7H.svg") no-repeat;}
+.c7S {background: center /101% url("./SVG/7S.svg") no-repeat;}
+
+.c8D {background: center /101% url("./SVG/8D.svg") no-repeat;}
+.c8C {background: center /101% url("./SVG/8C.svg") no-repeat;}
+.c8H {background: center /101% url("./SVG/8H.svg") no-repeat;}
+.c8S {background: center /101% url("./SVG/8S.svg") no-repeat;}
+
+.c9D {background: center /101% url("./SVG/9D.svg") no-repeat;}
+.c9C {background: center /101% url("./SVG/9C.svg") no-repeat;}
+.c9H {background: center /101% url("./SVG/9H.svg") no-repeat;}
+.c9S {background: center /101% url("./SVG/9S.svg") no-repeat;}
+
+.c10D {background: center /101% url("./SVG/10D.svg") no-repeat;}
+.c10C {background: center /101% url("./SVG/10C.svg") no-repeat;}
+.c10H {background: center /101% url("./SVG/10H.svg") no-repeat;}
+.c10S {background: center /101% url("./SVG/10S.svg") no-repeat;}
+
+.c11D {background: center /101% url("./SVG/11D.svg") no-repeat;}
+.c11C {background: center /101% url("./SVG/11C.svg") no-repeat;}
+.c11H {background: center /101% url("./SVG/11H.svg") no-repeat;}
+.c11S {background: center /101% url("./SVG/11S.svg") no-repeat;}
+
+.c12D {background: center /101% url("./SVG/12D.svg") no-repeat;}
+.c12C {background: center /101% url("./SVG/12C.svg") no-repeat;}
+.c12H {background: center /101% url("./SVG/12H.svg") no-repeat;}
+.c12S {background: center /101% url("./SVG/12S.svg") no-repeat;}
+
+.c13D {background: center /101% url("./SVG/13D.svg") no-repeat;}
+.c13C {background: center /101% url("./SVG/13C.svg") no-repeat;}
+.c13H {background: center /101% url("./SVG/13H.svg") no-repeat;}
+.c13S {background: center /101% url("./SVG/13S.svg") no-repeat;}

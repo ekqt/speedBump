@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Bump</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg" sizes="32x32" href="./SVG/D.svg">
+
+</head>
+
+<body>
+    <div class="main">
+        <p id="instructions">Click right below to start:</p>
+
+        <div class="actions" >
+            <p class="hover action" id="start">Play Here!</p>
+            <p class="hover action" id="red">Red</p>
+            <p class="hover action" id="high">High</p>
+            <p class="hover action" id="in">In</p>
+            <p class="" id="or">or</p>
+            <p class="hover action" id="black">Black</p>
+            <p class="hover action" id="low">Low</p>
+            <p class="hover action" id="out">Out</p>
+            <img class="hover action suits" id="clubs" src="./SVG/C.svg">
+            <img class="hover action suits" id="diamonds" src="./SVG/D.svg">
+            <img class="hover action suits" id="hearts" src="./SVG/H.svg">
+            <img class="hover action suits" id="spades" src="./SVG/S.svg">
+        </div>
+        
+        <div class="buttons">
+            <button class="button" id="shuffle">Shuffle</button>
+            <button class="button" id="new">New Deck</button>
+        </div>
+
+        <div class="cards">
+            <div class="card doc" id="card1"></div>
+            <div class="card" id="card2"></div>
+            <div class="card" id="card3"></div>
+            <div class="card" id="card4"></div>
+        </div>
+
+    </div>
+    <div class="response">
+        <div class="responseMsg"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
