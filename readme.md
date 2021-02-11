@@ -1,10 +1,10 @@
 # Welcome to Speed Bump: A fast card drinking game!
 
-The dealer deals four cards to each player, beginning on their left. Remaining cards are left aside in the pile. The pile is left aside as it will be used at the end of the round.
+The dealer deals four cards to each player, beginning on their left. Remaining cards are left aside in an imaginary dump pile.
 
 ## Rules
 
-Deal four cards and take your guesses. You lose, you drink. Win all rounds and all other players drink.
+Get four cards and take your guesses. You lose, you drink. Win all rounds and all other players drink.
 
 ## Dealing Pattern
 The dealer deals cards to each player in 4 rounds and each time the player gets the answer wrong, he/she must drink:
