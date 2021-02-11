@@ -1,11 +1,11 @@
 const rules = {
-    rule1: "What's the color of the first card?",
-    rule2: "Is the next one higher or lower?",
-    rule3: "Is it between or outside the previous cards?",
-    rule4: "What's the suit of the final card?",
-    congratulations: "Congratulations! You won the round!",
+    r1: "What's the color of the first card?",
+    r2: "Is the next one higher or lower?",
+    r3: "Is it between or outside the previous cards?",
+    r4: "What's the suit of the final card?",
+    win: "Congratulations! You won the round!",
+    lose: "Wrong! Try again!",
     reset: "New Deck!",
-    wrong: "Wrong! Try again!",
     shuffle: "You just shuffle the deck!"
 }
 
@@ -15,7 +15,6 @@ const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 let deck = [];
 let hand = [];
 let values = [];
-let cards = [];
 
 let createDeck = function () {
     for (let suit of suits) {
@@ -43,21 +42,11 @@ let createHand = function () {
         hand.push(deck.pop());
     }
     createValues();
-    createCards();
     console.log(hand);
 }
 
 let createValues = function() {
     values = [parseInt(hand[0]), parseInt(hand[1]), parseInt(hand[2]), parseInt(hand[3])];
-}
-
-let createCards = function(){
-    while (cards.length = 0) {
-        cards.pop();
-    }
-    for (let i of hand) {
-        cards.push(`c${i}`);
-    }
 }
 
 let newDeck = function () {
@@ -121,29 +110,18 @@ function wrong() {
     setTimeout(() => { letPlayer() }, 900);
 }
 
-let clss = [];
-for (let suit of suits) {
-    for (let rank of ranks) {
-        clss.push(`c${rank}${suit}`);
-    }
-};
-
 function round1() {
+    deck.length < 1 ? newDeck() : console.log(deck.length);
     createHand();
-    instructions.textContent = rules.rule1;
+    instructions.textContent = rules.r1;
     start.style.display = "none";
     red.style.display = "flex";
     or.style.display = "flex";
     black.style.display = "flex";
-    card1.classList.remove(...clss);
-    card2.classList.remove(...clss);
-    card3.classList.remove(...clss);
-    card4.classList.remove(...clss);
-    card1.classList.remove("doc");
-    card1.classList.add("bc");
-    card2.classList.add("bc");
-    card3.classList.add("bc");
-    card4.classList.add("bc");
+    card1.src = "./SVG/blankCard.svg";
+    card2.src = "./SVG/blankCard.svg";
+    card3.src = "./SVG/blankCard.svg";
+    card4.src = "./SVG/blankCard.svg";
     card1.style.width = "150px";
     card2.style.display = "flex";
     card3.style.display = "flex";
@@ -152,7 +130,7 @@ function round1() {
 
 function round2() {
     correct();
-    instructions.textContent = rules.rule2;
+    instructions.textContent = rules.r2;
     start.style.display = "none";
     red.style.display = "none";
     black.style.display = "none";
@@ -163,7 +141,7 @@ function round2() {
 
 function round3() {
     correct();
-    instructions.textContent = rules.rule3;
+    instructions.textContent = rules.r3;
     start.style.display = "none";
     high.style.display = "none";
     low.style.display = "none";
@@ -174,7 +152,7 @@ function round3() {
 
 function round4() {
     correct();
-    instructions.textContent = rules.rule4;
+    instructions.textContent = rules.r4;
     start.style.display = "none";
     between.style.display = "none";
     or.style.display = "none";
@@ -185,8 +163,8 @@ function round4() {
     spades.style.display = "flex";
 }
 
-function winner() {
-    instructions.textContent = rules.congratulations;
+function win() {
+    instructions.textContent = rules.win;
     red.style.display = "none";
     or.style.display = "none";
     black.style.display = "none";
@@ -199,12 +177,12 @@ function winner() {
     hearts.style.display = "none";
     spades.style.display = "none";
     start.style.display = "flex";
-    start.style.textContent = "Play Again!";
+    start.textContent = "Play Again!";
 }
 
 function gameOver() {
     wrong();
-    instructions.textContent = rules.wrong;
+    instructions.textContent = rules.lose;
     red.style.display = "none";
     or.style.display = "none";
     black.style.display = "none";
@@ -217,20 +195,14 @@ function gameOver() {
     hearts.style.display = "none";
     spades.style.display = "none";
     start.style.display = "flex";
-    start.style.textContent = "Play Again!";
+    start.textContent = "Play Again!";
 }
 
-function freshStart() {
-    deck.createDeck();
-    deck.shuffle();
-    winner();
+function again() {
+    newDeck();
+    win();
     instructions.textContent = rules.reset;
-    card1.classList.remove("bc");
-    card1.classList.remove(...clss);
-    card2.classList.remove(...clss);
-    card3.classList.remove(...clss);
-    card4.classList.remove(...clss);
-    card1.classList.add("doc");
+    card1.src = "./SVG/Deck of Cards.svg";
     card1.style.width = "250px";
     card2.style.display = "none";
     card3.style.display = "none";
@@ -238,12 +210,12 @@ function freshStart() {
 }
 
 shuffleButton.addEventListener('click', function () {
-    deck.shuffle();
+    shuffle();
     instructions.textContent = rules.shuffle;
 });
 
 reset.addEventListener('click', function () {
-    freshStart();
+    again();
 })
 
 start.addEventListener('click', function () {
@@ -251,7 +223,7 @@ start.addEventListener('click', function () {
 });
 
 red.addEventListener('click', function () {
-    card1.classList.add(cards[0]);
+    card1.src = `./SVG/${hand[0]}.svg`
     if (hand[0].indexOf('C') == -1 && hand[0].indexOf('S') == -1) {
         round2();
     } else {
@@ -260,7 +232,7 @@ red.addEventListener('click', function () {
 });
 
 black.addEventListener('click', function () {
-    card1.classList.add(cards[0]);
+    card1.src = `./SVG/${hand[0]}.svg`
     if (hand[0].indexOf('D') == -1 && hand[0].indexOf('H') == -1) {
         round2();
     } else {
@@ -270,7 +242,7 @@ black.addEventListener('click', function () {
 
 
 high.addEventListener('click', function () {
-    card2.classList.add(cards[1]);
+    card2.src = `./SVG/${hand[1]}.svg`
     if (values[1] >= values[0]) {
         round3();
     } else {
@@ -279,7 +251,7 @@ high.addEventListener('click', function () {
 });
 
 low.addEventListener('click', function () {
-    card2.classList.add(cards[1]);
+    card2.src = `./SVG/${hand[1]}.svg`
     if (values[1] <= values[0]) {
         round3();
     } else {
@@ -288,7 +260,7 @@ low.addEventListener('click', function () {
 });
 
 between.addEventListener('click', function () {
-    card3.classList.add(cards[2]);
+    card3.src = `./SVG/${hand[2]}.svg`
     if (values[0] <= values[1]) {
         if (values[2] >= values[0] && values[2] <= values[1]) {
             round4();
@@ -305,7 +277,7 @@ between.addEventListener('click', function () {
 });
 
 out.addEventListener('click', function () {
-    card3.classList.add(cards[2]);
+    card3.src = `./SVG/${hand[2]}.svg`
     if (values[0] < values[1]) {
         if (values[2] < values[0] || values[2] > values[1]) {
             round4();
@@ -322,40 +294,40 @@ out.addEventListener('click', function () {
 });
 
 clubs.addEventListener('click', function () {
-    card4.classList.add(cards[3]);
+    card4.src = `./SVG/${hand[3]}.svg`
     if (!(hand[3].indexOf('C') == -1)) {
         correct();
-        winner();
+        win();
     } else {
         gameOver();
     }
 });
 
 diamonds.addEventListener('click', function () {
-    card4.classList.add(cards[3]);
-    if (!(call[3].indexOf('D') == -1)) {
+    card4.src = `./SVG/${hand[3]}.svg`
+    if (!(hand[3].indexOf('D') == -1)) {
         correct();
-        winner();
+        win();
     } else {
         gameOver();
     }
 });
 
 hearts.addEventListener('click', function () {
-    card4.classList.add(cards[3]);
+    card4.src = `./SVG/${hand[3]}.svg`
     if (!(hand[3].indexOf('H') == -1)) {
         correct();
-        winner();
+        win();
     } else {
         gameOver();
     }
 });
 
 spades.addEventListener('click', function () {
-    card4.classList.add(cards[3]);
+    card4.src = `./SVG/${hand[3]}.svg`
     if (!(hand[3].indexOf('S') == -1)) {
         correct();
-        winner();
+        win();
     } else {
         gameOver();
     }
