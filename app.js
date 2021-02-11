@@ -12,45 +12,64 @@ const rules = {
 const suits = ['C', 'D', 'H', 'S'];
 const ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
+let deck = [];
+let hand = [];
+let values = [];
+let cards = [];
 
-class Deck {
-    constructor() {
-        this.deck = [];
-    }
-
-    createDeck() {
-        this.deck = [];
-        for (let suit of suits) {
-            for (let rank of ranks) {
-                this.deck.push(`${rank}${suit}`);
-            }
+let createDeck = function () {
+    for (let suit of suits) {
+        for (let rank of ranks) {
+            deck.push(`${rank}${suit}`);
         }
-        return this.deck;
-    }
-
-    shuffle() {
-        let counter = this.deck.length, temp, i;
-        while(counter) {
-            i = Math.floor(Math.random()* counter--);
-            temp = this.deck[counter];
-            this.deck[counter] = this.deck[i];
-            this.deck[i] = temp;
-        }
-        return this.deck;
-    }
-
-    deal () {
-        let hand =  [];
-        while(hand.length<4) {
-            hand.push(this.deck.pop());
-        }
-        return hand;
     }
 }
 
-let deck = new Deck;
-deck.createDeck();
-deck.shuffle();
+let shuffle = function () {
+    let counter = deck.length, temp, i;
+    while (counter) {
+        i = Math.floor(Math.random() * counter--);
+        temp = deck[counter];
+        deck[counter] = deck[i];
+        deck[i] = temp;
+    }
+}
+
+let createHand = function () {
+    while (hand.length = 0) {
+        hand.pop();
+    }
+    while (hand.length < 4) {
+        hand.push(deck.pop());
+    }
+    createValues();
+    createCards();
+    console.log(hand);
+}
+
+let createValues = function() {
+    values = [parseInt(hand[0]), parseInt(hand[1]), parseInt(hand[2]), parseInt(hand[3])];
+}
+
+let createCards = function(){
+    while (cards.length = 0) {
+        cards.pop();
+    }
+    for (let i of hand) {
+        cards.push(`c${i}`);
+    }
+}
+
+let newDeck = function () {
+    while (deck.length = 0) {
+        deck.pop();
+    }
+    createDeck();
+    shuffle();
+}
+
+createDeck();
+shuffle();
 
 let instructions = document.querySelector('#instructions');
 
@@ -90,7 +109,7 @@ function correct() {
     response.classList.add("correct");
     response.style.display = "flex";
     responseMsg.textContent = "Correct!";
-    setTimeout(()=>{letPlayer()},700);
+    setTimeout(() => { letPlayer() }, 700);
 }
 
 function wrong() {
@@ -99,17 +118,18 @@ function wrong() {
     response.classList.add("wrong");
     response.style.display = "flex";
     responseMsg.textContent = "Wrong!";
-    setTimeout(()=>{letPlayer()},900);
+    setTimeout(() => { letPlayer() }, 900);
 }
 
 let clss = [];
 for (let suit of suits) {
     for (let rank of ranks) {
-       clss.push(`c${rank}${suit}`);
+        clss.push(`c${rank}${suit}`);
     }
 };
 
 function round1() {
+    createHand();
     instructions.textContent = rules.rule1;
     start.style.display = "none";
     red.style.display = "flex";
@@ -205,10 +225,11 @@ function freshStart() {
     deck.shuffle();
     winner();
     instructions.textContent = rules.reset;
-    card1.src = "./SVG/Deck%20of%20Cards.svg";
-    card2.src = " ";
-    card3.src = " ";
-    card4.src = " ";
+    card1.classList.remove("bc");
+    card1.classList.remove(...clss);
+    card2.classList.remove(...clss);
+    card3.classList.remove(...clss);
+    card4.classList.remove(...clss);
     card1.classList.add("doc");
     card1.style.width = "250px";
     card2.style.display = "none";
@@ -216,140 +237,126 @@ function freshStart() {
     card4.style.display = "none";
 }
 
-shuffleButton.addEventListener('click', function(){
+shuffleButton.addEventListener('click', function () {
     deck.shuffle();
     instructions.textContent = rules.shuffle;
 });
 
-reset.addEventListener('click', function(){
+reset.addEventListener('click', function () {
     freshStart();
 })
 
-
-start.addEventListener('click', function(){
+start.addEventListener('click', function () {
     round1();
-    let call = deck.deal();
-    let val = [parseInt(call[0]), parseInt(call[1]), parseInt(call[2]), parseInt(call[3])];
-    console.log(call);
+});
 
-    red.addEventListener('click', function(){
-        card1.classList.remove("bc");
-        card1.classList.add(`c${call[0]}`);
-        if(call[0].indexOf('C') == -1 && call[0].indexOf('S') == -1){
-            round2();
-        } else { 
-            gameOver();
-        }
-    });
+red.addEventListener('click', function () {
+    card1.classList.add(cards[0]);
+    if (hand[0].indexOf('C') == -1 && hand[0].indexOf('S') == -1) {
+        round2();
+    } else {
+        gameOver();
+    }
+});
 
-    black.addEventListener('click', function(){
-        card1.classList.remove("bc");
-        card1.classList.add(`c${call[0]}`);
-        if(call[0].indexOf('D') == -1 && call[0].indexOf('H') == -1){
-            round2();
-        } else { 
-            gameOver();
-        }
-    });
+black.addEventListener('click', function () {
+    card1.classList.add(cards[0]);
+    if (hand[0].indexOf('D') == -1 && hand[0].indexOf('H') == -1) {
+        round2();
+    } else {
+        gameOver();
+    }
+});
 
 
-    high.addEventListener('click', function(){
-        card2.classList.remove("bc");
-        card2.classList.add(`c${call[1]}`);
-        if(val[1] >= val[0]){
-            round3();
-        } else { 
-            gameOver();
-        }
-    });
+high.addEventListener('click', function () {
+    card2.classList.add(cards[1]);
+    if (values[1] >= values[0]) {
+        round3();
+    } else {
+        gameOver();
+    }
+});
 
-    low.addEventListener('click', function(){
-        card2.classList.remove("bc");
-        card2.classList.add(`c${call[1]}`);
-        if(val[1] <= val[0]){
-            round3();
-        } else { 
-            gameOver();
-        }
-    });
+low.addEventListener('click', function () {
+    card2.classList.add(cards[1]);
+    if (values[1] <= values[0]) {
+        round3();
+    } else {
+        gameOver();
+    }
+});
 
-    between.addEventListener('click', function(){
-        card3.classList.remove("bc");
-        card3.classList.add(`c${call[2]}`);
-        if (val[0] <= val[1]) {
-            if (val[2] >= val[0] && val[2] <= val[1]){
-                round4();
-            } else {
-                gameOver();
-            }
+between.addEventListener('click', function () {
+    card3.classList.add(cards[2]);
+    if (values[0] <= values[1]) {
+        if (values[2] >= values[0] && values[2] <= values[1]) {
+            round4();
         } else {
-            if (val[2] >= val[1] && val[2] <= val[0]){
-                round4();
-            } else {
-                gameOver();
-            }
+            gameOver();
         }
-    });
-
-    out.addEventListener('click', function(){
-        card3.classList.remove("bc");
-        card3.classList.add(`c${call[2]}`);
-        if (val[0] < val[1]) {
-            if (val[2] < val[0] || val[2] > val[1]){
-                round4();
-            } else {
-                gameOver();
-            }
+    } else {
+        if (values[2] >= values[1] && values[2] <= values[0]) {
+            round4();
         } else {
-            if (val[2] < val[1] || val[2] > val[0]){
-                round4();
-            } else {
-                gameOver();
-            }
-        }
-    });
-
-    clubs.addEventListener('click', function(){
-        card4.classList.remove("bc");
-        card4.classList.add(`c${call[3]}`);
-        if(!(call[3].indexOf('C') == -1)){
-            correct();
-            winner();
-        } else { 
             gameOver();
         }
-    });
+    }
+});
 
-    diamonds.addEventListener('click', function(){
-        card4.classList.remove("bc");
-        card4.classList.add(`c${call[3]}`);
-        if(!(call[3].indexOf('D') == -1)){
-            correct();
-            winner();
-        } else { 
+out.addEventListener('click', function () {
+    card3.classList.add(cards[2]);
+    if (values[0] < values[1]) {
+        if (values[2] < values[0] || values[2] > values[1]) {
+            round4();
+        } else {
             gameOver();
         }
-    });
-
-    hearts.addEventListener('click', function(){
-        card4.classList.remove("bc");
-        card4.classList.add(`c${call[3]}`);
-        if(!(call[3].indexOf('H') == -1)){
-            correct();
-            winner();
-        } else { 
+    } else {
+        if (values[2] < values[1] || values[2] > values[0]) {
+            round4();
+        } else {
             gameOver();
         }
-    });
+    }
+});
 
-    spades.addEventListener('click', function(){
-        card4.classList.remove("bc");
-        card4.classList.add(`c${call[3]}`);
-        if(!(call[3].indexOf('S') == -1)){
-            correct();
-            winner();
-        } else { 
-            gameOver();
-        }
-    });
+clubs.addEventListener('click', function () {
+    card4.classList.add(cards[3]);
+    if (!(hand[3].indexOf('C') == -1)) {
+        correct();
+        winner();
+    } else {
+        gameOver();
+    }
+});
+
+diamonds.addEventListener('click', function () {
+    card4.classList.add(cards[3]);
+    if (!(call[3].indexOf('D') == -1)) {
+        correct();
+        winner();
+    } else {
+        gameOver();
+    }
+});
+
+hearts.addEventListener('click', function () {
+    card4.classList.add(cards[3]);
+    if (!(hand[3].indexOf('H') == -1)) {
+        correct();
+        winner();
+    } else {
+        gameOver();
+    }
+});
+
+spades.addEventListener('click', function () {
+    card4.classList.add(cards[3]);
+    if (!(hand[3].indexOf('S') == -1)) {
+        correct();
+        winner();
+    } else {
+        gameOver();
+    }
 });
