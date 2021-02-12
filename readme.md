@@ -1,12 +1,12 @@
 # Welcome to Speed Bump: A fast card drinking game!
 
-Click on **´Play Here´** to begin. All cards are automatically shuffled once. Players can call additional for shuffles or for a new deck if desired at any point.
+Click on **´Play Here´** to begin. All cards are automatically shuffled once. If desired, players can call for more shuffles or a new deck at any point.
 
-After each round, the remaining cards are left aside in an imaginary dump pile until a new deck is called. If a new deck isn't called by the player. The game will automatically create new deck endlessly.
+After each round, the remaining cards are left aside in an imaginary dump pile until a new deck is called. If a new deck isn't called by the player, the game will automatically create new deck over and over again.
 
 ## The Rules are Simple
 
-Get four cards and take your guesses. You lose, you drink. Win all rounds and all other players drink. Yes, you DON'T have do play drinking, this can be a normal card game for one (but where's the fun in that tho, right?).
+Get four cards and take your guesses. You lose, you drink. Win all rounds and everybody else drinks. Yes, you DON'T have do play drinking, this can be a normal card game (but where's the fun in that tho, right?).
 
 ## How to Play a Round
 The game deals cards to each player in rounds and he/she must...:
