@@ -1,19 +1,23 @@
 # Welcome to Speed Bump: A fast card drinking game!
 
-The dealer deals four cards to each player, beginning on their left. Remaining cards are left aside in an imaginary dump pile.
+Click on **´Play Here´** to begin. All cards are automatically shuffled once. Players can call additional for shuffles or for a new deck if desired at any point.
 
-## Rules
+After each round, the remaining cards are left aside in an imaginary dump pile until a new deck is called. If a new deck isn't called by the player. The game will automatically create new decks for endlessly.
+
+## The Rules are Simple
 
 Get four cards and take your guesses. You lose, you drink. Win all rounds and all other players drink.
 
-## Dealing Pattern
-The dealer deals cards to each player in 4 rounds and each time the player gets the answer wrong, he/she must drink:
+## How to Play a Round
+The game deals cards to each player in rounds and he/she must...:
 
-1. Player must guess the color of the card (black or red).
-2. Player must guess whether the card is higher or lower.
-3. Player must guess whether the face value of the card is between or outside the previous two cards.
-4. Player must guess the suit of the card (clubs, diamonds, hearts, spades).
+1. ...guess the color of the card (red or black).
+2. ...guess whether the card value is higher or lower.
+3. ...guess whether the card value of the card is between or outside the previous two cards.
+4. ...guess the suit of the card (clubs, diamonds, hearts, spades).
 
+## Feedback
+All feedback is welcomed. If you are a user and detect a bug, please let me know.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
