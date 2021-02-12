@@ -122,7 +122,7 @@ function round1() {
     card2.src = "./SVG/blankCard.svg";
     card3.src = "./SVG/blankCard.svg";
     card4.src = "./SVG/blankCard.svg";
-    card1.style.width = "150px";
+    card1.classList.remove("card1");
     card2.style.display = "flex";
     card3.style.display = "flex";
     card4.style.display = "flex";
@@ -203,7 +203,7 @@ function again() {
     win();
     instructions.textContent = rules.reset;
     card1.src = "./SVG/Deck of Cards.svg";
-    card1.style.width = "250px";
+    card1.classList.add("card1");
     card2.style.display = "none";
     card3.style.display = "none";
     card4.style.display = "none";

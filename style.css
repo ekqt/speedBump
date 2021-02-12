@@ -110,7 +110,13 @@ body {
     box-shadow: 0 0.5rem 1.5rem -0.2rem rgba(0, 0, 0, 0.20);
 }
 
-#card1 {
+@media (max-width: 345px) {
+    .card {
+        width: 125px;
+    }
+}
+
+.card1 {
     width: 250px;
 }
 
